@@ -3,10 +3,6 @@ import {updateCourse} from "../services/CourseService";
 
 class CourseTableRowContainer extends React.Component {
 
-    // constructor(props) {
-    //     super(props);
-    //
-    // }
     state = {
         editingStatus: false,
         course: this.props.course
@@ -21,14 +17,23 @@ class CourseTableRowContainer extends React.Component {
 
     updateCourseInfo = () => {
         updateCourse(this.state.course._id, this.state.course).then(
-            response=>{
+            response => {
                 this.setState({
-                        editingStatus:false
-                }
+                        editingStatus: false
+                    }
                 )
             }
         )
 
+    };
+
+    inputEventListener = (event) => {
+        this.setState({
+            course: {
+                ...this.state.course,
+                [event.target.name]: event.target.value
+            }
+        })
     };
 
     plainText = () => {
@@ -56,34 +61,19 @@ class CourseTableRowContainer extends React.Component {
                 <td>
                     <input type={"text"} className={"form-control"} value={this.state.course.title}
                            name={"title"}
-                    onChange={(event)=>{
-                        this.setState({
-                            course:{...this.state.course,
-                                [event.target.name]:event.target.value}
-
-                        })
-                        // console.log(this.state.course.title);
-                    }}/>
+                           onChange={this.inputEventListener}/>
                 </td>
                 <td>
-                    <input type={"text"} className={"form-control d-none d-md-table-cell py-auto"} value={this.state.course.owner}
+                    <input type={"text"} className={"form-control d-none d-md-table-cell py-auto"}
+                           value={this.state.course.owner}
                            name={"owner"}
-                    onChange={(event) => {
-                        this.setState({
-                            course: {...this.state.course,
-                                [event.target.name]: event.target.value}
-                        });
-                    }}/>
+                           onChange={this.inputEventListener}/>
                 </td>
                 <td>
-                    <input type={"text"} className={"form-control d-none d-md-table-cell py-auto"} value={this.state.course.lastModified}
-                           name ="lastModified"
-                    onChange={(event) => {
-                        this.setState({
-                            course:{...this.state.course,
-                                [event.target.name]: event.target.value}
-                        })
-                    }}/>
+                    <input type={"text"} className={"form-control d-none d-md-table-cell py-auto"}
+                           value={this.state.course.lastModified}
+                           name="lastModified"
+                           onChange={this.inputEventListener}/>
                 </td>
                 <td className="text-center">
                     <button type="button" className="btn btn-primary" onClick={this.updateCourseInfo}>Update</button>
