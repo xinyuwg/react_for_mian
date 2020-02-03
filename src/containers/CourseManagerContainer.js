@@ -1,5 +1,5 @@
 import React from "react";
-import NavBarComponent from "../component/NavBarComponent";
+import NavBarContainer from "./NavBarContainer";
 import {deleteCourse, findAllCourses} from "../services/CourseService";
 import CourseTableComponent from "../component/CourseTableComponent";
 
@@ -8,8 +8,8 @@ class CourseManagerContainer extends React.Component {
     state = {
         layout: "table",
         editingCourse: false,
-        newCourseTitle: "",
-        courses: []
+        courses: [],
+        newCourseTitle: ""
     };
 
     componentDidMount = async () => {
@@ -19,19 +19,29 @@ class CourseManagerContainer extends React.Component {
         });
     };
 
-    deleteCourse = async(courseId)=>{
+    deleteCourse = async (courseId) => {
         await deleteCourse(courseId);
         const courseFromService = await findAllCourses();
         this.setState({
-            courses:courseFromService
+            courses: courseFromService
         });
     };
+
+    setSet(obj) {
+        this.setState(obj);
+    }
 
     render() {
         return (
             <div>
-                <NavBarComponent/>
-                <CourseTableComponent courses={this.state.courses} deleteCourse={this.deleteCourse} />
+                <NavBarContainer
+                    setSet={this.setSet.bind(this)}
+                    newCourseTitle={this.state.newCourseTitle}
+                    courses={this.state.courses}/>
+                {this.state.layout === "table" && <CourseTableComponent
+                    courses={this.state.courses}
+                    deleteCourse={this.deleteCourse}
+                    setSet={this.setSet.bind(this)}/>}
             </div>
         );
     }

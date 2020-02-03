@@ -72,3 +72,13 @@ export const updateCourse = async (courseId, course) => {
             }
         });
 };
+
+export const createCourse = async (course) => {
+    return await fetch(`${SERVICE_URL}`, {
+        method: 'POST',
+        body: JSON.stringify(course),
+        headers: {
+            "content-type": "application/json"
+        }
+    })
+};

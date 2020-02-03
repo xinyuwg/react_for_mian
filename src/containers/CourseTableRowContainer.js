@@ -8,7 +8,6 @@ class CourseTableRowContainer extends React.Component {
         course: this.props.course
     };
 
-
     switchEditingStatus = () => {
         this.setState({
             editingStatus: true
