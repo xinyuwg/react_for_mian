@@ -2,6 +2,7 @@ import React from "react";
 import NavBarContainer from "./NavBarContainer";
 import {deleteCourse, findAllCourses} from "../services/CourseService";
 import CourseTableComponent from "../component/CourseTableComponent";
+import CourseGridComponent from "../component/CourseGridComponent";
 
 
 class CourseManagerContainer extends React.Component {
@@ -38,10 +39,17 @@ class CourseManagerContainer extends React.Component {
                     setSet={this.setSet.bind(this)}
                     newCourseTitle={this.state.newCourseTitle}
                     courses={this.state.courses}/>
-                {this.state.layout === "table" && <CourseTableComponent
-                    courses={this.state.courses}
-                    deleteCourse={this.deleteCourse}
-                    setSet={this.setSet.bind(this)}/>}
+                {
+                    this.state.layout === "table" && <CourseTableComponent
+                        courses={this.state.courses}
+                        deleteCourse={this.deleteCourse}
+                        setSet={this.setSet.bind(this)}/>}
+                {
+                    this.state.layout === "grid" && <CourseGridComponent
+                        courses={this.state.courses}
+                        deleteCourse={this.deleteCourse}
+                        setSet={this.setSet.bind(this)}/>}
+
             </div>
         );
     }
