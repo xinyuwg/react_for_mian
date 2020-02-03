@@ -1,0 +1,1 @@
+export const SERVICE_URL = 'https://wbdv-generic-server.herokuapp.com/api/001051600/courses';
