@@ -97,9 +97,8 @@ const CourseEditorComponent = ({editedCourseTitle, setSet}) => {
                             </li>
                             <li className="list-group-item d-flex justify-content-between align-items-center">
                                 <span/>
-                                <a href="#">
-                                    <i className="fas fa-plus wbdv-module-item-add-btn"/>
-                                </a>
+
+                                <i className="fas fa-plus wbdv-module-item-add-btn"/>
                             </li>
 
                         </ul>
@@ -107,13 +106,13 @@ const CourseEditorComponent = ({editedCourseTitle, setSet}) => {
                     <div className="col-7 offset-md-1">
                         <ul className="nav nav-tabs wbdv-topic-pill-list">
                             <li className="nav-item">
-                                <a className="nav-link wbdv-topic-pill active" href="#">Topic 1</a>
+                                <span className="nav-link wbdv-topic-pill active">Topic 1</span>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link wbdv-topic-pill" href="#">Topic 2</a>
+                                <span className="nav-link wbdv-topic-pill">Topic 2</span>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link wbdv-topic-pill" href="#">Topic 3</a>
+                                <span className="nav-link wbdv-topic-pill">Topic 3</span>
                             </li>
                             <li className="nav-item">
                                 <i className="fas fa-plus fa-1x my-2 mx-1 wbdv-topic-add-btn"/>
@@ -130,9 +129,9 @@ const CourseEditorComponent = ({editedCourseTitle, setSet}) => {
                                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">H1
                                             </button>
                                             <div className="dropdown-menu">
-                                                <a className="dropdown-item" href="#">H1</a>
-                                                <a className="dropdown-item" href="#">H2</a>
-                                                <a className="dropdown-item" href="#">H3</a>
+                                                <span className="dropdown-item">H1</span>
+                                                <span className="dropdown-item">H2</span>
+                                                <span className="dropdown-item">H3</span>
                                             </div>
                                         </div>
                                         <input type="text" className="form-control" id="title"
@@ -140,9 +139,9 @@ const CourseEditorComponent = ({editedCourseTitle, setSet}) => {
                                     </div>
                                 </div>
                                 <div className="col-2 col-sm-1">
-                                    <a href="#"><i className="fas fa-backspace widget-custom"/></a>
-                                    <a href="#"><i className="fas fa-arrow-up widget-custom"/></a>
-                                    <a href="#"><i className="fas fa-arrow-down widget-custom"/></a>
+                                    <i className="fas fa-backspace widget-custom"/>
+                                    <i className="fas fa-arrow-up widget-custom"/>
+                                    <i className="fas fa-arrow-down widget-custom"/>
 
                                 </div>
                             </div>
@@ -156,9 +155,9 @@ const CourseEditorComponent = ({editedCourseTitle, setSet}) => {
                                     </div>
                                 </div>
                                 <div className="col-2 col-sm-1">
-                                    <a href="#"><i className="fas fa-backspace widget-custom"/></a>
-                                    <a href="#"><i className="fas fa-arrow-up widget-custom"/></a>
-                                    <a href="#"><i className="fas fa-arrow-down widget-custom"/></a>
+                                    <i className="fas fa-backspace widget-custom"/>
+                                    <i className="fas fa-arrow-up widget-custom"/>
+                                    <i className="fas fa-arrow-down widget-custom"/>
 
                                 </div>
                             </div>
@@ -174,9 +173,9 @@ const CourseEditorComponent = ({editedCourseTitle, setSet}) => {
                                     </div>
                                 </div>
                                 <div className="col-2 col-sm-1">
-                                    <a href="#"><i className="fas fa-backspace widget-custom"/></a>
-                                    <a href="#"><i className="fas fa-arrow-up widget-custom"/></a>
-                                    <a href="#"><i className="fas fa-arrow-down widget-custom"/></a>
+                                    <i className="fas fa-backspace widget-custom"/>
+                                    <i className="fas fa-arrow-up widget-custom"/>
+                                    <i className="fas fa-arrow-down widget-custom"/>
                                 </div>
                             </div>
                             <br/>
@@ -193,9 +192,9 @@ const CourseEditorComponent = ({editedCourseTitle, setSet}) => {
 
                                 </div>
                                 <div className="col-2 col-sm-1">
-                                    <a href="#"><i className="fas fa-backspace widget-custom"/></a>
-                                    <a href="#"><i className="fas fa-arrow-up widget-custom"/></a>
-                                    <a href="#"><i className="fas fa-arrow-down widget-custom"/></a>
+                                    <i className="fas fa-backspace widget-custom"/>
+                                    <i className="fas fa-arrow-up widget-custom"/>
+                                    <i className="fas fa-arrow-down widget-custom"/>
 
                                 </div>
                             </div>
@@ -225,8 +224,6 @@ const CourseEditorComponent = ({editedCourseTitle, setSet}) => {
                             <button type="submit" className="btn btn-success my-3">Save</button>
                             <button type="submit" className="btn btn-secondary my-3">Preview</button>
                         </form>
-
-
                     </div>
                 </div>
             </div>
