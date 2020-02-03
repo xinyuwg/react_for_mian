@@ -68,14 +68,14 @@ class CourseTableRowContainer extends React.Component {
                            name={"title"}
                            onChange={this.inputEventListener}/>
                 </td>
-                <td>
+                <td className={"d-none d-md-table-cell py-auto"}>
                     <input type={"text"} className={"form-control d-none d-md-table-cell py-auto"}
                            value={this.state.course.owner}
                            name={"owner"}
                            onChange={this.inputEventListener}/>
                 </td>
-                <td>
-                    <input type={"text"} className={"form-control d-none d-md-table-cell py-auto"}
+                <td className={"d-none d-md-table-cell py-auto"}>
+                    <input type={"text"} className={"form-control"}
                            value={this.state.course.lastModified}
                            name="lastModified"
                            onChange={this.inputEventListener}/>
