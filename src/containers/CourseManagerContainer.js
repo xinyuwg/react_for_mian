@@ -3,6 +3,7 @@ import NavBarContainer from "./NavBarContainer";
 import {deleteCourse, findAllCourses} from "../services/CourseService";
 import CourseTableComponent from "../component/CourseTableComponent";
 import CourseGridComponent from "../component/CourseGridComponent";
+import CourseEditorComponent from "../component/CourseEditorComponent";
 
 
 class CourseManagerContainer extends React.Component {
@@ -10,7 +11,8 @@ class CourseManagerContainer extends React.Component {
         layout: "table",
         editingCourse: false,
         courses: [],
-        newCourseTitle: ""
+        newCourseTitle: "",
+        editedCourseTitle: ""
     };
 
     componentDidMount = async () => {
@@ -32,7 +34,7 @@ class CourseManagerContainer extends React.Component {
         this.setState(obj);
     }
 
-    render() {
+    courseListText = () => {
         return (
             <div>
                 <NavBarContainer
@@ -51,6 +53,17 @@ class CourseManagerContainer extends React.Component {
                         setSet={this.setSet.bind(this)}/>}
 
             </div>
+        )
+    };
+
+
+    render() {
+        return (
+            <>
+                {this.state.editingCourse ? <CourseEditorComponent
+                    editedCourseTitle={this.state.editedCourseTitle}
+                    setSet={this.setSet.bind(this)}/> : this.courseListText()}
+            </>
         );
     }
 }

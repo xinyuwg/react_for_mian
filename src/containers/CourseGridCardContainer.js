@@ -41,7 +41,12 @@ class CourseGridCardContainer extends React.Component {
             <>
                 <div className="card">
                     <div className="card-body">
-                        <h5 className="card-title">{this.state.course.title}</h5>
+                        <h5 className="card-title btn-link" onClick={
+                            ()=>this.props.setSet({
+                                editingCourse:true,
+                                editedCourseTitle:this.state.course.title
+                            })
+                        }>{this.state.course.title}</h5>
                         <h6 className="card-subtitle mb-2 text-muted">{this.state.course.owner}</h6>
                         <p className="card-text">Last modified: {this.state.course.lastModified}</p>
 
@@ -63,7 +68,7 @@ class CourseGridCardContainer extends React.Component {
             <>
                 <div className="card">
                     <div className="card-body">
-                        <label for={"title"} className={"col-form-label"}>Course Title</label>
+                        <label htmlFor={"title"} className={"col-form-label"}>Course Title</label>
                         <input type={"text"} className={"form-control"} value={this.state.course.title}
                                name={"title"}
                                id={"title"}

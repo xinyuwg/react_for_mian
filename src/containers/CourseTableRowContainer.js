@@ -38,7 +38,13 @@ class CourseTableRowContainer extends React.Component {
     plainText = () => {
         return (
             <>
-                <td>
+                <td onClick={
+                    ()=>this.props.setSet({
+                        editingCourse:true,
+                        editedCourseTitle:this.state.course.title
+                    })
+
+                } className={"btn-link"}>
                     <i className="fas fa-book mx-2"/>
                     {this.state.course.title}
                 </td>

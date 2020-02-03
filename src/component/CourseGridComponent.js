@@ -8,14 +8,18 @@ const CourseGridComponent = ({courses, deleteCourse, setSet}) => {
 
             <div className={"card-deck my-3"}>
                 {courses.map(function (course) {
-                    return <CourseGridCardContainer course={course} key={course._id} deleteCourse={deleteCourse}/>
+                    return <CourseGridCardContainer course={course}
+                                                    key={course._id}
+                                                    deleteCourse={deleteCourse}
+                                                    setSet={setSet}/>
                 })}
             </div>
             <div>
                 <button type="button" className="float-right btn btn-light"
-                        onClick={ () => setSet({layout: "table"})}>
+                        onClick={() => setSet({layout: "table"})}>
                     <i className="fas fa-table mx-1"/>
-                    Table view</button>
+                    Table view
+                </button>
             </div>
 
         </div>
