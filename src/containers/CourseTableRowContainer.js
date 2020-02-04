@@ -5,7 +5,8 @@ class CourseTableRowContainer extends React.Component {
 
     state = {
         editingStatus: false,
-        course: this.props.course
+        course: this.props.course,
+        highlightStatus:""
     };
 
     switchEditingStatus = () => {
@@ -35,18 +36,35 @@ class CourseTableRowContainer extends React.Component {
         })
     };
 
+    switchHighlightStatus = () => {
+        this.setState(prevState => {
+            if (prevState.highlightStatus === "") {
+                this.setState({
+                    highlightStatus: "table-primary"
+                })
+            } else {
+                this.setState({
+                    highlightStatus: ""
+                })
+            }
+        })
+    };
+
+
     plainText = () => {
         return (
             <>
-                <td onClick={
-                    ()=>this.props.setSet({
-                        editingCourse:true,
-                        editedCourseTitle:this.state.course.title
-                    })
+                <td>
+                    <span onClick={
+                        ()=>this.props.setSet({
+                            editingCourse:true,
+                            editedCourseTitle:this.state.course.title
+                        })
+                    } className={"btn-link"}>
+                        <i className="fas fa-book mx-2"/>
+                        {this.state.course.title}
+                    </span>
 
-                } className={"btn-link"}>
-                    <i className="fas fa-book mx-2"/>
-                    {this.state.course.title}
                 </td>
                 <td className="d-none d-md-table-cell py-auto">{this.state.course.owner}</td>
                 <td className="d-none d-md-table-cell py-auto">{this.state.course.lastModified}</td>
@@ -89,11 +107,11 @@ class CourseTableRowContainer extends React.Component {
 
     render() {
         return (
-            <tr>
+            <tr className={this.state.highlightStatus} onClick={() => this.switchHighlightStatus()}>
                 {!this.state.editingStatus && this.plainText()}
                 {this.state.editingStatus && this.editingText()}
             </tr>
-        )
+        );
     }
 }
 
