@@ -38,7 +38,7 @@ class CourseGridCardContainer extends React.Component {
 
     plainText = () => {
         return (
-            <div className={"col-xl-2 col-lg-3 col-md-4 col-sm-6"}>
+            <div className={"col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 my-1"}>
                 <div className="card h-100">
                     <div className="card-body">
                         <h5 className="card-title btn-link" onClick={

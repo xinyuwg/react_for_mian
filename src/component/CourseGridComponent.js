@@ -6,7 +6,7 @@ const CourseGridComponent = ({courses, deleteCourse, setSet}) => {
     return (
         <div className={"container"}>
 
-            <div className={"row row-cols-1"}>
+            <div className={"row"}>
                 {/*<div className={"col mb-4"}>*/}
                     {courses.map(function (course) {
                         return <CourseGridCardContainer course={course}
