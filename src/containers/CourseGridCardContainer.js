@@ -38,8 +38,8 @@ class CourseGridCardContainer extends React.Component {
 
     plainText = () => {
         return (
-            <>
-                <div className="card">
+            <div className={"col-xl-2 col-lg-3 col-md-4 col-sm-6"}>
+                <div className="card h-100">
                     <div className="card-body">
                         <h5 className="card-title btn-link" onClick={
                             ()=>this.props.setSet({
@@ -59,7 +59,7 @@ class CourseGridCardContainer extends React.Component {
                     </div>
 
                 </div>
-            </>
+            </div>
         );
     };
 
