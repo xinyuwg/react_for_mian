@@ -4,6 +4,7 @@ import {deleteCourse, findAllCourses} from "../services/CourseService";
 import CourseTableComponent from "../component/CourseTableComponent";
 import CourseGridComponent from "../component/CourseGridComponent";
 import {BrowserRouter as Router, Route} from "react-router-dom";
+import CourseEditor from "../component/CourseEditor/CourseEditor";
 
 
 class CourseManagerContainer extends React.Component {
@@ -92,15 +93,19 @@ class CourseManagerContainer extends React.Component {
             <Router>
                 <Route path={"/"}
                        exact={true}
-                       render = {()=>this.courseTableView()}/>
+                       render={() => this.courseTableView()}/>
 
                 <Route path={"/table"}
                        exact={true}
-                       render = {()=>this.courseTableView()}/>
+                       render={() => this.courseTableView()}/>
 
                 <Route path={"/grid"}
                        exact={true}
-                       render = {()=>this.courseGridView()}/>
+                       render={() => this.courseGridView()}/>
+                <Route path={"/course-editor/:courseId"}
+                       exact={true}
+                       render={(props) => <CourseEditor {...props}/>}
+                />
             </Router>
         );
     }

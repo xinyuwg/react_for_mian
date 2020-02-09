@@ -1,6 +1,7 @@
 import React from "react";
 
 import {updateCourse} from "../services/CourseService";
+import {Link} from "react-router-dom";
 
 class CourseGridCardContainer extends React.Component {
     state = {
@@ -41,12 +42,12 @@ class CourseGridCardContainer extends React.Component {
             <div className={"col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 my-1"}>
                 <div className="card h-100">
                     <div className="card-body">
-                        <h5 className="card-title btn-link" onClick={
-                            ()=>this.props.setSet({
-                                editingCourse:true,
-                                editedCourseTitle:this.state.course.title
-                            })
-                        }>{this.state.course.title}</h5>
+
+                        <h5 className="card-title btn-link">
+                            <Link to={`/course-editor/${this.state.course._id}`}>
+                                {this.state.course.title}
+                            </Link></h5>
+
                         <h6 className="card-subtitle mb-2 text-muted">{this.state.course.owner}</h6>
                         <p className="card-text">Last modified: {this.state.course.lastModified}</p>
 

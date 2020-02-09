@@ -1,5 +1,6 @@
 import React from "react";
 import {updateCourse} from "../services/CourseService";
+import {Link} from "react-router-dom";
 
 class CourseTableRowContainer extends React.Component {
 
@@ -55,15 +56,10 @@ class CourseTableRowContainer extends React.Component {
         return (
             <>
                 <td>
-                    <span onClick={
-                        ()=>this.props.setSet({
-                            editingCourse:true,
-                            editedCourseTitle:this.state.course.title
-                        })
-                    } className={"btn-link"}>
+                    <Link to={`/course-editor/${this.state.course._id}`}>
                         <i className="fas fa-book mx-2"/>
                         {this.state.course.title}
-                    </span>
+                    </Link>
 
                 </td>
                 <td className="d-none d-md-table-cell py-auto">{this.state.course.owner}</td>
