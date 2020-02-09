@@ -1,5 +1,6 @@
 import React from "react";
 import CourseTableRowContainer from "../containers/CourseTableRowContainer";
+import {Link} from "react-router-dom";
 
 const CourseTableComponent = ({courses, deleteCourse, setSet}) => {
     return (
@@ -15,18 +16,20 @@ const CourseTableComponent = ({courses, deleteCourse, setSet}) => {
                 </thead>
                 <tbody>
                 {courses.map(function (course) {
-                    return <CourseTableRowContainer course={course} key={course._id} deleteCourse={deleteCourse} setSet={setSet}/>
+                    return <CourseTableRowContainer course={course} key={course._id} deleteCourse={deleteCourse}
+                                                    setSet={setSet}/>
                 })}
                 </tbody>
 
 
             </table>
             <div>
-                <button type="button" className="float-right btn btn-light"
-                        onClick={() => setSet({layout: "grid"})}>
-                    <i className="fas fa-th mx-1"/>
-                    Grid view
-                </button>
+                <Link to={"/grid"}>
+                    <button type="button" className="float-right btn btn-light">
+                        <i className="fas fa-th mx-1"/>
+                        Grid view
+                    </button>
+                </Link>
             </div>
         </div>
     );

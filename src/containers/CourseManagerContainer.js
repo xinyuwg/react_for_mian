@@ -3,12 +3,11 @@ import NavBarContainer from "./NavBarContainer";
 import {deleteCourse, findAllCourses} from "../services/CourseService";
 import CourseTableComponent from "../component/CourseTableComponent";
 import CourseGridComponent from "../component/CourseGridComponent";
-import CourseEditorComponent from "../component/CourseEditorComponent";
+import {BrowserRouter as Router, Route} from "react-router-dom";
 
 
 class CourseManagerContainer extends React.Component {
     state = {
-        layout: "table",
         editingCourse: false,
         courses: [],
         newCourseTitle: "",
@@ -56,14 +55,53 @@ class CourseManagerContainer extends React.Component {
         )
     };
 
+    courseTableView = () => {
+        return (
+            <div>
+                <NavBarContainer
+                    setSet={this.setSet.bind(this)}
+                    newCourseTitle={this.state.newCourseTitle}
+                    courses={this.state.courses}/>
+
+                <CourseTableComponent
+                    courses={this.state.courses}
+                    deleteCourse={this.deleteCourse}
+                    setSet={this.setSet.bind(this)}/>
+            </div>
+        )
+    };
+
+    courseGridView = () => {
+        return (
+            <div>
+                <NavBarContainer
+                    setSet={this.setSet.bind(this)}
+                    newCourseTitle={this.state.newCourseTitle}
+                    courses={this.state.courses}/>
+
+                <CourseGridComponent
+                    courses={this.state.courses}
+                    deleteCourse={this.deleteCourse}
+                    setSet={this.setSet.bind(this)}/>
+            </div>
+        )
+    };
 
     render() {
         return (
-            <>
-                {this.state.editingCourse ? <CourseEditorComponent
-                    editedCourseTitle={this.state.editedCourseTitle}
-                    setSet={this.setSet.bind(this)}/> : this.courseListText()}
-            </>
+            <Router>
+                <Route path={"/"}
+                       exact={true}
+                       render = {()=>this.courseTableView()}/>
+
+                <Route path={"/table"}
+                       exact={true}
+                       render = {()=>this.courseTableView()}/>
+
+                <Route path={"/grid"}
+                       exact={true}
+                       render = {()=>this.courseGridView()}/>
+            </Router>
         );
     }
 }

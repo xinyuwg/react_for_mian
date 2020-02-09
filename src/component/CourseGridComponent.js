@@ -1,5 +1,6 @@
 import React from "react";
 import CourseGridCardContainer from "../containers/CourseGridCardContainer";
+import {Link} from "react-router-dom";
 
 
 const CourseGridComponent = ({courses, deleteCourse, setSet}) => {
@@ -8,20 +9,21 @@ const CourseGridComponent = ({courses, deleteCourse, setSet}) => {
 
             <div className={"row"}>
                 {/*<div className={"col mb-4"}>*/}
-                    {courses.map(function (course) {
-                        return <CourseGridCardContainer course={course}
-                                                        key={course._id}
-                                                        deleteCourse={deleteCourse}
-                                                        setSet={setSet}/>
-                    })}
+                {courses.map(function (course) {
+                    return <CourseGridCardContainer course={course}
+                                                    key={course._id}
+                                                    deleteCourse={deleteCourse}
+                                                    setSet={setSet}/>
+                })}
                 {/*</div>*/}
             </div>
             <div>
-                <button type="button" className="float-right btn btn-light my-2"
-                        onClick={() => setSet({layout: "table"})}>
-                    <i className="fas fa-table mx-1"/>
-                    Table view
-                </button>
+                <Link to={"/table"}>
+                    <button type="button" className="float-right btn btn-light my-2">
+                        <i className="fas fa-table mx-1"/>
+                        Table view
+                    </button>
+                </Link>
             </div>
 
 
