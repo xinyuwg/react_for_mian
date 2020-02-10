@@ -1,4 +1,5 @@
 import {
+    CHANGE_MODULE_INPUT_CACHE,
     CREATE_MODULE,
     DELETE_MODULE,
     EDIT_MODULE_LIST,
@@ -7,7 +8,9 @@ import {
 } from "../actions/moduleActions";
 
 const initialState = {
-    modulusListEditingStatus: false,
+    editingRowIndex: -1,
+    highlightRowIndex: -1,
+    editingInputCache: "",
     modules: []
 };
 
@@ -38,7 +41,8 @@ const moduleReducer = (state = initialState, action) => {
                 ...state,
                 modules: state.modules.map(module => {
                     if (module._id === action.moduleId) {
-                        return action.newModule;
+                        module.title = action.newModule.title;
+                        return module;
                     } else {
                         return module;
                     }
@@ -48,13 +52,19 @@ const moduleReducer = (state = initialState, action) => {
         case EDIT_MODULE_LIST:
             return {
                 ...state,
-                modulusListEditingStatus: true
+                editingRowIndex: action.editingRowIndex,
+                editingInputCache: action.editingRowValue
             };
 
         case SAVE_MODULE_LIST:
             return {
                 ...state,
-                modulusListEditingStatus: false
+                editingRowIndex: -1
+            };
+        case CHANGE_MODULE_INPUT_CACHE:
+            return {
+                ...state,
+                editingInputCache: action.newCacheValue
             };
         default:
             return state;

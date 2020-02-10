@@ -5,6 +5,8 @@ export const FIND_MODULE = "FIND_MODULE";
 export const UPDATE_MODULE = "UPDATE_MODULE";
 export const EDIT_MODULE_LIST = "EDIT_MODULE_LIST";
 export const SAVE_MODULE_LIST = "SAVE_MODULE_LIST";
+export const CHANGE_MODULE_INPUT_CACHE = "CHANGE_MODULE_INPUT_CACHE";
+
 
 export const createModule = (module) => ({
     type: CREATE_MODULE,
@@ -32,10 +34,17 @@ export const updateModule = (moduleId, newModule) => ({
     newModule: newModule
 });
 
-export const editModuleList = () => ({
-    type: EDIT_MODULE_LIST
+export const editModuleList = (editingRowIndex,editingRowValue) => ({
+    type: EDIT_MODULE_LIST,
+    editingRowIndex:editingRowIndex,
+    editingRowValue:editingRowValue
 });
 
 export const saveModuleList = () => ({
     type: SAVE_MODULE_LIST
 });
+
+export const changeModuleInputCache=(newCacheValue)=>({
+    type: CHANGE_MODULE_INPUT_CACHE,
+    newCacheValue:newCacheValue
+})
