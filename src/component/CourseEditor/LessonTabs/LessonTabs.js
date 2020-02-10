@@ -18,12 +18,13 @@ class LessonTabs extends React.Component {
                     <LessonTabPill
                         lesson={lesson}
                         index={index}
+                        key={index}
                         match={this.props.match}
                         history={this.props.history}
                     />
                 )}
                 <Nav.Item
-                    eventKey={"create"}
+                    key={"create"}
                     onClick={() => this.props.createLesson(this.props.moduleId)}>
                     <Icon icon={"plus-square-o"}/> Add Lesson
                 </Nav.Item>

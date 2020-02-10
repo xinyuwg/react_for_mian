@@ -12,8 +12,8 @@ import TopicPills from "./TopicPills/TopicPills";
 
 const rootReducer = combineReducers({
     modules: moduleReducer,
-    lessons:lessonReducer,
-    topics:topicReducer
+    lessons: lessonReducer,
+    topics: topicReducer
 });
 
 const store = createStore(rootReducer,
@@ -26,7 +26,7 @@ const CourseEditor = ({history, match}) =>
             history={history}/>
 
         <Grid className={"my-4"}>
-            <Row className={"show-grid"} >
+            <Row className={"show-grid"}>
                 <Col xs={8}>
                     <ModuleList match={match}
                                 courseId={match.params.courseId}
@@ -34,18 +34,19 @@ const CourseEditor = ({history, match}) =>
                 </Col>
                 <Col xs={15} xsOffset={1}>
                     {match.params.moduleId ?
-                    <LessonTabs
-                        match={match}
-                        moduleId={match.params.moduleId}
-                        history={history}
-                        style={{marginTop:"15px"}}/>:
+                        <LessonTabs
+                            match={match}
+                            moduleId={match.params.moduleId}
+                            history={history}
+                            style={{marginTop: "15px"}}/> :
                         <Placeholder.Grid rows={10} columns={6}/>}
                     {match.params.lessonId ?
                         <TopicPills
                             match={match}
                             lessonId={match.params.lessonId}
-                            history={history}/>:
-                        <Placeholder.Paragraph rows={3} style={{marginTop:"15px"}}/>}
+                            history={history}
+                            className={"my-3"}/> :
+                        <Placeholder.Paragraph rows={3} style={{marginTop: "15px"}}/>}
 
                 </Col>
             </Row>

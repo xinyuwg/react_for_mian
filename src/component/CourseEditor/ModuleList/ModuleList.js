@@ -23,6 +23,7 @@ class ModuleList extends React.Component {
                             index={index}
                             match={this.props.match}
                             history={this.props.history}
+                            key={index}
                         />
                     )}
                     {!this.props.modules && <Placeholder.Paragraph rows={10}/>}

@@ -3,7 +3,7 @@ import NavBarContainer from "./NavBarContainer";
 import {deleteCourse, findAllCourses} from "../services/CourseService";
 import CourseTableComponent from "../component/CourseTableComponent";
 import CourseGridComponent from "../component/CourseGridComponent";
-import {BrowserRouter as Router, Route} from "react-router-dom";
+import {Router, Route} from "react-router-dom";
 import CourseEditor from "../component/CourseEditor/CourseEditor";
 import history from "../history";
 

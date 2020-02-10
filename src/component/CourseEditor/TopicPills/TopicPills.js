@@ -3,43 +3,44 @@ import {connect} from "react-redux";
 import {Alert, Button, ButtonGroup, Icon, Nav} from "rsuite";
 import * as topicService from "../../../services/TopicService";
 import * as topicAction from "../../../actions/topicActions";
+import TopicPillsItem from "./TopicPillsItem";
+// import TopicPillsItem from "./TopicPillsItem";
+// import LessonTabPill from "../LessonTabs/LessonTabPill";
 
 class TopicPills extends React.Component {
 
     componentDidMount() {
-        // this.props.findLessonForModule(this.props.moduleId);
+        this.props.findTopicForLesson(this.props.lessonId);
     }
 
     render() {
         return (
-            // <Nav appearance="subtle" justified>
-            //     {this.props.lessons && this.props.lessons.map((lesson, index) =>
-            //         <LessonTabPill
-            //             lesson={lesson}
-            //             index={index}
-            //             match={this.props.match}
-            //             history={this.props.history}
-            //         />
-            //     )}
-            //     <Nav.Item
-            //         eventKey={"create"}
-            //         onClick={() => this.props.createLesson(this.props.moduleId)}>
-            //         <Icon icon={"plus-square-o"}/> Add Lesson
-            //     </Nav.Item>
-            // </Nav>
-            <ButtonGroup style={{marginTop:12}} justified>
-                <Button appearance={"ghost"}>Add Topic</Button>
-            </ButtonGroup>
-        )
+            <>
+                <Nav appearance="tabs" justified>
+                    {this.props.topics && this.props.topics.map((topic, index) =>
+                        <TopicPillsItem
+                            topic={topic}
+                            index={index}
+                            match={this.props.match}
+                            history={this.props.history}
+                        />
+                    )}
+                    <Nav.Item  onClick={() => this.props.createTopic(this.props.match.params.lessonId)}>Add Topic</Nav.Item>
+                </Nav>
+
+            </>
+
+
+        );
     }
 }
 
 const stateToPropertyMapper = (state) => {
     return {
         topics: state.topics.topics
-
     }
 };
+
 
 const dispatchToPropertyMapper = (dispatch) => {
     return {

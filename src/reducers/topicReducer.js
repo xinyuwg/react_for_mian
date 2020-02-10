@@ -1,12 +1,5 @@
-// import {
-//     CREATE_LESSON,
-//     FIND_LESSON_FOR_MODULE,
-//     EDIT_LESSON_LIST,
-//     CHANGE_HIGHLIGHT_TAB_INDEX, CHANGE_LESSON_INPUT_CACHE, DELETE_LESSON, SAVE_LESSON_LIST, UPDATE_LESSON
-// } from "../actions/lessonActions";
-
 import {
-    CHANGE_HIGHLIGHT_TAB_INDEX, CHANGE_TOPIC_INPUT_CACHE,
+    CHANGE_HIGHLIGHT_TAB_INDEX, CHANGE_TOPIC_HIGHLIGHT_TAB_INDEX, CHANGE_TOPIC_INPUT_CACHE,
     CREATE_TOPIC, DELETE_TOPIC,
     EDIT_TOPIC_LIST,
     FIND_TOPIC_FOR_LESSON, SAVE_TOPIC_LIST, UPDATE_TOPIC
@@ -14,7 +7,7 @@ import {
 
 const initialState = {
     editingTabIndex: -1,
-    highlightTabIndex: -1,
+    topicHighlightTabIndex: -1,
     editingInputCache: "",
     topics: undefined
 };
@@ -32,7 +25,7 @@ const topicReducer = (state = initialState, action) => {
                 ...state,
                 topics: [
                     ...state.topics,
-                    action.topics
+                    action.topic
                 ]
             };
 
@@ -43,10 +36,10 @@ const topicReducer = (state = initialState, action) => {
                 editingInputCache: action.editingTabValue
             };
 
-        case CHANGE_HIGHLIGHT_TAB_INDEX:
+        case CHANGE_TOPIC_HIGHLIGHT_TAB_INDEX:
             return {
                 ...state,
-                highlightTabIndex: action.tabIndex
+                topicHighlightTabIndex: action.tabIndex
             };
         case CHANGE_TOPIC_INPUT_CACHE:
             return {

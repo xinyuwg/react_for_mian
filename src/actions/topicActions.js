@@ -6,7 +6,7 @@ export const UPDATE_TOPIC = "UPDATE_TOPIC";
 export const EDIT_TOPIC_LIST = "EDIT_TOPIC_LIST";
 export const SAVE_TOPIC_LIST = "SAVE_TOPIC_LIST";
 export const CHANGE_TOPIC_INPUT_CACHE = "CHANGE_TOPIC_INPUT_CACHE";
-export const CHANGE_HIGHLIGHT_TAB_INDEX = "CHANGE_HIGHLIGHT_TAB_INDEX";
+export const CHANGE_TOPIC_HIGHLIGHT_TAB_INDEX = "CHANGE_TOPIC_HIGHLIGHT_TAB_INDEX";
 
 export const createTopic = (topic) => ({
     type: CREATE_TOPIC,
@@ -30,7 +30,7 @@ export const editTopicList = (editingTabIndex, editingTabValue) => ({
 });
 
 export const changeHighlightPill = (tabIndex) => ({
-    type: CHANGE_HIGHLIGHT_TAB_INDEX,
+    type: CHANGE_TOPIC_HIGHLIGHT_TAB_INDEX,
     tabIndex: tabIndex
 });
 
