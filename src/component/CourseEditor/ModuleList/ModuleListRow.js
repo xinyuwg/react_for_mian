@@ -15,7 +15,8 @@ class ModuleListRow extends React.Component {
             <ListGroup.Item
                 index={this.props.index}
                 className={"d-flex justify-content-between align-items-center"
-                    .concat(this.props.index === this.props.highlightRowIndex ? " active" : "")}
+                    .concat((this.props.index === this.props.highlightRowIndex
+                    &&this.props.editingRowIndex===-1)? " active" : "")}
                 onClick={() => this.props.changeHighlightIndex(this.props.index)}
             >
                 {this.props.module.title}
@@ -29,8 +30,7 @@ class ModuleListRow extends React.Component {
         return (
             <ListGroup.Item
                 index={this.props.index}
-                className={"d-flex justify-content-between align-items-center"
-                    .concat(this.props.index === this.props.highlightRowIndex ? " active" : "")}>
+                className={"d-flex justify-content-between align-items-center active"}>
                 <Input style={{width: "70%"}}
                        value={this.props.editingInputCache}
                        onChange={value => this.props.changeInputCache(value)}/>
