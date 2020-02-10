@@ -7,17 +7,20 @@ import {connect} from "react-redux";
 
 class ModuleListRow extends React.Component {
 
-    state = {moduleLocalTitle:this.props.module.title};
+    state = {moduleLocalTitle: this.props.module.title};
 
 
     plainText = () => {
         return (
             <ListGroup.Item
                 index={this.props.index}
-                className={"d-flex justify-content-between align-items-center"}>
+                className={"d-flex justify-content-between align-items-center"
+                    .concat(this.props.index === this.props.highlightRowIndex ? " active" : "")}
+                onClick={() => this.props.changeHighlightIndex(this.props.index)}
+            >
                 {this.props.module.title}
                 <IconButton icon={<Icon icon={"edit"}/>}
-                            onClick={() => this.props.editModuleList(this.props.index,this.props.module.title)}/>
+                            onClick={() => this.props.editModuleList(this.props.index, this.props.module.title)}/>
             </ListGroup.Item>
         )
     };
@@ -26,7 +29,8 @@ class ModuleListRow extends React.Component {
         return (
             <ListGroup.Item
                 index={this.props.index}
-                className={"d-flex justify-content-between align-items-center"}>
+                className={"d-flex justify-content-between align-items-center"
+                    .concat(this.props.index === this.props.highlightRowIndex ? " active" : "")}>
                 <Input style={{width: "70%"}}
                        value={this.props.editingInputCache}
                        onChange={value => this.props.changeInputCache(value)}/>
@@ -39,7 +43,7 @@ class ModuleListRow extends React.Component {
                                     onClick={() =>
                                         this.props.saveModuleList(
                                             this.props.module._id,
-                                            {title:this.props.editingInputCache})}/>
+                                            {title: this.props.editingInputCache})}/>
                     </ButtonGroup>
                 </ButtonToolbar>
 
@@ -54,7 +58,7 @@ class ModuleListRow extends React.Component {
             return (
                 this.editingText()
             );
-        }else {
+        } else {
             return (
                 this.plainText()
             );
@@ -68,7 +72,8 @@ class ModuleListRow extends React.Component {
 const stateToPropertyMapper = (state) => {
     return {
         editingRowIndex: state.modules.editingRowIndex,
-        editingInputCache: state.modules.editingInputCache
+        editingInputCache: state.modules.editingInputCache,
+        highlightRowIndex: state.modules.highlightRowIndex
     }
 };
 
@@ -82,22 +87,25 @@ const dispatchToPropertyMapper = (dispatch) => {
                     Alert.info("Delete Module Successfully");
 
                 }),
-        updateModule:(moduleId) =>
-            moduleService.updateModule(moduleId,this.moduleLocal)
-                .then(status=>{
+        updateModule: (moduleId) =>
+            moduleService.updateModule(moduleId, this.moduleLocal)
+                .then(status => {
                     dispatch(moduleAction.updateModule(moduleId, this.moduleLocal));
                 }),
-        editModuleList: (editingRowIndex,editingRowValue) =>
-            dispatch(moduleAction.editModuleList(editingRowIndex,editingRowValue)),
-        saveModuleList: (moduleId,newModule) =>{
-            moduleService.updateModule(moduleId, newModule);
-            dispatch(moduleAction.updateModule(moduleId, newModule));
+        editModuleList: (editingRowIndex, editingRowValue) =>
+            dispatch(moduleAction.editModuleList(editingRowIndex, editingRowValue)),
+        saveModuleList: (moduleId, newModule) => {
+            moduleService.updateModule(moduleId, newModule)
+                .then(r => dispatch(moduleAction.updateModule(moduleId, newModule)));
             Alert.success("Update Module Successfully");
             dispatch(moduleAction.saveModuleList());
 
         },
-        changeInputCache:(newInputCache)=>{
+        changeInputCache: (newInputCache) => {
             dispatch(moduleAction.changeModuleInputCache(newInputCache));
+        },
+        changeHighlightIndex: (rowIndex) => {
+            dispatch(moduleAction.changeHighlightRow(rowIndex));
         }
 
     }

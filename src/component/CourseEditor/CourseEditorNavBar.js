@@ -1,6 +1,8 @@
 import React from "react";
 import {Navbar, Icon, IconButton} from "rsuite";
 import {findCourseById} from "../../services/CourseService";
+import * as moduleAction from "../../actions/moduleActions";
+import {connect} from "react-redux";
 
 class CourseEditorNavBar extends React.Component {
     state = {};
@@ -16,7 +18,10 @@ class CourseEditorNavBar extends React.Component {
 
                 <Navbar.Header>
                     <IconButton icon={<Icon icon={"close"} size={"lg"}/>}
-                                onClick={() => this.props.history.push("/")}
+                                onClick={() => {
+                                    this.props.history.push("/");
+                                    this.props.closeEditor();
+                                }}
                                 className={"mx-2"}/> <span
                     className={"navbar-brand logo"}>{this.state.course && this.state.course.title}</span>
                 </Navbar.Header>
@@ -27,4 +32,15 @@ class CourseEditorNavBar extends React.Component {
 }
 
 
-export default CourseEditorNavBar;
+const dispatchToPropertyMapper = (dispatch) => {
+    return {
+        closeEditor: () => {dispatch(moduleAction.closeEditor())}
+    }
+
+};
+
+
+export default connect(
+    null,
+    dispatchToPropertyMapper
+)(CourseEditorNavBar);

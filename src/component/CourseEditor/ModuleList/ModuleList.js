@@ -2,7 +2,7 @@ import React from "react";
 import * as moduleService from "../../../services/ModuleService";
 import * as moduleAction from "../../../actions/moduleActions";
 import {connect} from "react-redux";
-import {Alert, Button} from "rsuite";
+import {Alert, Button, Placeholder} from "rsuite";
 import {ListGroup} from "react-bootstrap";
 import ModuleListRow from "./ModuleListRow";
 
@@ -22,6 +22,7 @@ class ModuleList extends React.Component {
                             index={index}
                         />
                     )}
+                    {!this.props.modules && <Placeholder.Paragraph rows={10}/>}
                 </ListGroup>
                 <Button appearance={"primary"}
                         onClick={

@@ -1,5 +1,6 @@
 import {
-    CHANGE_MODULE_INPUT_CACHE,
+    CHANGE_HIGHLIGHT_ROW_INDEX,
+    CHANGE_MODULE_INPUT_CACHE, CLOSE_EDITOR,
     CREATE_MODULE,
     DELETE_MODULE,
     EDIT_MODULE_LIST,
@@ -11,7 +12,7 @@ const initialState = {
     editingRowIndex: -1,
     highlightRowIndex: -1,
     editingInputCache: "",
-    modules: []
+    modules: undefined
 };
 
 const moduleReducer = (state = initialState, action) => {
@@ -65,6 +66,15 @@ const moduleReducer = (state = initialState, action) => {
             return {
                 ...state,
                 editingInputCache: action.newCacheValue
+            };
+        case CLOSE_EDITOR:
+            return {
+                ...initialState
+            };
+        case CHANGE_HIGHLIGHT_ROW_INDEX:
+            return {
+                ...state,
+                highlightRowIndex: action.rowIndex
             };
         default:
             return state;

@@ -6,7 +6,8 @@ export const UPDATE_MODULE = "UPDATE_MODULE";
 export const EDIT_MODULE_LIST = "EDIT_MODULE_LIST";
 export const SAVE_MODULE_LIST = "SAVE_MODULE_LIST";
 export const CHANGE_MODULE_INPUT_CACHE = "CHANGE_MODULE_INPUT_CACHE";
-
+export const CLOSE_EDITOR = "CLOSE_EDITOR";
+export const CHANGE_HIGHLIGHT_ROW_INDEX = "CHANGE_HIGHLIGHT_ROW_INDEX";
 
 export const createModule = (module) => ({
     type: CREATE_MODULE,
@@ -44,7 +45,16 @@ export const saveModuleList = () => ({
     type: SAVE_MODULE_LIST
 });
 
-export const changeModuleInputCache=(newCacheValue)=>({
+export const changeModuleInputCache = (newCacheValue) => ({
     type: CHANGE_MODULE_INPUT_CACHE,
-    newCacheValue:newCacheValue
-})
+    newCacheValue: newCacheValue
+});
+
+export const closeEditor = () => ({
+    type: CLOSE_EDITOR
+});
+
+export const changeHighlightRow = (rowIndex) => ({
+    type: CHANGE_HIGHLIGHT_ROW_INDEX,
+    rowIndex: rowIndex
+});
