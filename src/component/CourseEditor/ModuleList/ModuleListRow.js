@@ -7,8 +7,14 @@ import {connect} from "react-redux";
 
 class ModuleListRow extends React.Component {
 
-    state = {moduleLocalTitle: this.props.module.title};
-
+    componentDidMount() {
+        if (this.props.match.params.moduleId) {
+            console.log(this.props.index);
+            if (this.props.match.params.moduleId === this.props.module._id) {
+                this.props.changeHighlightIndex(this.props.index)
+            }
+        }
+    }
 
     plainText = () => {
         return (
@@ -16,10 +22,14 @@ class ModuleListRow extends React.Component {
                 index={this.props.index}
                 className={"d-flex justify-content-between align-items-center"
                     .concat((this.props.index === this.props.highlightRowIndex
-                    &&this.props.editingRowIndex===-1)? " active" : "")}
-                onClick={() => this.props.changeHighlightIndex(this.props.index)}
+                        && this.props.editingRowIndex === -1) ? " active" : "")}
+                onClick={() => {
+                    this.props.changeHighlightIndex(this.props.index);
+                    this.props.history.push(`/course-editor/${this.props.match.params.courseId}/module/${this.props.module._id}`);
+                    // this.props.history.go();
+                }}
             >
-                {this.props.module.title}
+                {this.props.modules[this.props.index].title}
                 <IconButton icon={<Icon icon={"edit"}/>}
                             onClick={() => this.props.editModuleList(this.props.index, this.props.module.title)}/>
             </ListGroup.Item>
@@ -46,8 +56,6 @@ class ModuleListRow extends React.Component {
                                             {title: this.props.editingInputCache})}/>
                     </ButtonGroup>
                 </ButtonToolbar>
-
-
             </ListGroup.Item>
         )
     };
@@ -71,6 +79,7 @@ class ModuleListRow extends React.Component {
 
 const stateToPropertyMapper = (state) => {
     return {
+        modules: state.modules.modules,
         editingRowIndex: state.modules.editingRowIndex,
         editingInputCache: state.modules.editingInputCache,
         highlightRowIndex: state.modules.highlightRowIndex
@@ -87,18 +96,15 @@ const dispatchToPropertyMapper = (dispatch) => {
                     Alert.info("Delete Module Successfully");
 
                 }),
-        updateModule: (moduleId) =>
-            moduleService.updateModule(moduleId, this.moduleLocal)
-                .then(status => {
-                    dispatch(moduleAction.updateModule(moduleId, this.moduleLocal));
-                }),
+
         editModuleList: (editingRowIndex, editingRowValue) =>
             dispatch(moduleAction.editModuleList(editingRowIndex, editingRowValue)),
         saveModuleList: (moduleId, newModule) => {
             moduleService.updateModule(moduleId, newModule)
                 .then(r => dispatch(moduleAction.updateModule(moduleId, newModule)));
-            Alert.success("Update Module Successfully");
             dispatch(moduleAction.saveModuleList());
+            Alert.success("Update Module Successfully");
+
 
         },
         changeInputCache: (newInputCache) => {

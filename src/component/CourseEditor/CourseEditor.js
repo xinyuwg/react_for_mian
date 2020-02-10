@@ -4,10 +4,13 @@ import {Provider} from "react-redux";
 import {combineReducers, createStore} from "redux";
 import moduleReducer from "../../reducers/moduleReducer";
 import ModuleList from "./ModuleList/ModuleList";
-import {Grid, Row, Col} from "rsuite";
+import {Grid, Row, Col, Placeholder} from "rsuite";
+import LessonTabs from "./LessonTabs/LessonTabs";
+import lessonReducer from "../../reducers/lessonReducer";
 
 const rootReducer = combineReducers({
-    modules: moduleReducer
+    modules: moduleReducer,
+    lessons:lessonReducer
 });
 
 const store = createStore(rootReducer,
@@ -20,9 +23,19 @@ const CourseEditor = ({history, match}) =>
             history={history}/>
 
         <Grid className={"my-4"}>
-            <Row className={"show-grid"}>
+            <Row className={"show-grid"} >
                 <Col xs={8}>
-                    <ModuleList courseId={match.params.courseId}/>
+                    <ModuleList match={match}
+                                courseId={match.params.courseId}
+                                history={history}/>
+                </Col>
+                <Col xs={15} xsOffset={1}>
+                    {match.params.moduleId ?
+                    <LessonTabs
+                        match={match}
+                        moduleId={match.params.moduleId}
+                        history={history}/>:
+                        <Placeholder.Grid rows={10} columns={6}/>}
                 </Col>
             </Row>
         </Grid>

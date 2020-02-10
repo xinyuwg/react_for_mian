@@ -9,7 +9,8 @@ import ModuleListRow from "./ModuleListRow";
 class ModuleList extends React.Component {
 
     componentDidMount() {
-        this.props.findModuleForCourse(this.props.courseId);
+        this.props.findModuleForCourse(this.props.match.params.courseId);
+
     }
 
     render() {
@@ -20,13 +21,15 @@ class ModuleList extends React.Component {
                         <ModuleListRow
                             module={module}
                             index={index}
+                            match={this.props.match}
+                            history={this.props.history}
                         />
                     )}
                     {!this.props.modules && <Placeholder.Paragraph rows={10}/>}
                 </ListGroup>
                 <Button appearance={"primary"}
                         onClick={
-                            () => this.props.createModule(this.props.courseId)
+                            () => this.props.createModule(this.props.match.params.courseId)
                         }
                         className={"my-2"}
                         block>Create Module</Button>
