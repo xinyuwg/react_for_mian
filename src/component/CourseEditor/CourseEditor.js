@@ -7,10 +7,13 @@ import ModuleList from "./ModuleList/ModuleList";
 import {Grid, Row, Col, Placeholder} from "rsuite";
 import LessonTabs from "./LessonTabs/LessonTabs";
 import lessonReducer from "../../reducers/lessonReducer";
+import topicReducer from "../../reducers/topicReducer";
+import TopicPills from "./TopicPills/TopicPills";
 
 const rootReducer = combineReducers({
     modules: moduleReducer,
-    lessons:lessonReducer
+    lessons:lessonReducer,
+    topics:topicReducer
 });
 
 const store = createStore(rootReducer,
@@ -34,8 +37,16 @@ const CourseEditor = ({history, match}) =>
                     <LessonTabs
                         match={match}
                         moduleId={match.params.moduleId}
-                        history={history}/>:
+                        history={history}
+                        style={{marginTop:"15px"}}/>:
                         <Placeholder.Grid rows={10} columns={6}/>}
+                    {match.params.lessonId ?
+                        <TopicPills
+                            match={match}
+                            lessonId={match.params.lessonId}
+                            history={history}/>:
+                        <Placeholder.Paragraph rows={3} style={{marginTop:"15px"}}/>}
+
                 </Col>
             </Row>
         </Grid>

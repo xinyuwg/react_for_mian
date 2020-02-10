@@ -13,7 +13,7 @@ class LessonTabs extends React.Component {
 
     render() {
         return (
-            <Nav appearance="subtle" >
+            <Nav appearance="subtle" justified>
                 {this.props.lessons && this.props.lessons.map((lesson, index) =>
                     <LessonTabPill
                         lesson={lesson}
