@@ -41,7 +41,8 @@ class ModuleList extends React.Component {
 
 const stateToPropertyMapper = (state) => {
     return {
-        modules: state.modules.modules
+        modules: state.modules.modules,
+        highlightRowIndex: state.modules.highlightRowIndex
     }
 };
 

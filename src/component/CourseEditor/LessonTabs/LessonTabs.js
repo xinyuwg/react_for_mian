@@ -11,6 +11,13 @@ class LessonTabs extends React.Component {
         this.props.findLessonForModule(this.props.moduleId);
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.moduleId !== this.props.moduleId) {
+            this.props.findLessonForModule(this.props.moduleId);
+        }
+
+    }
+
     render() {
         return (
             <Nav appearance="subtle" justified>
