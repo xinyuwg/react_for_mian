@@ -2,7 +2,7 @@ import React from "react";
 import * as topicService from "../../../services/TopicService";
 import * as topicAction from "../../../actions/topicActions";
 import {connect} from "react-redux";
-import {Alert, Button, Icon, Input, InputGroup, Nav, Row} from "rsuite";
+import {Alert, Icon, Input, InputGroup, Nav, Row} from "rsuite";
 
 class TopicPillsItem extends React.Component {
     //

@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import {Alert, Button, ButtonGroup, Icon, Nav} from "rsuite";
+import {Alert, Nav} from "rsuite";
 import * as topicService from "../../../services/TopicService";
 import * as topicAction from "../../../actions/topicActions";
 import TopicPillsItem from "./TopicPillsItem";
