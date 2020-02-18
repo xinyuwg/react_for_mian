@@ -20,12 +20,12 @@ class TopicPillsItem extends React.Component {
 
             <Nav.Item appearance={"ghost"}
                 // eventKey={this.props.index}
-                onClick={() => {
-                    this.props.changeHighlightIndex(this.props.index);
-                    // this.props.history.push(`/course-editor/${this.props.match.params.courseId}/module/${this.props.match.params.moduleId}/lesson/${this.props.lesson._id}`)
-                }}
-                active={this.props.index === this.props.highlightTabIndex}>
-                {this.props.topics[this.props.index].title}
+                      onClick={() => {
+                          this.props.changeHighlightIndex(this.props.index);
+                          this.props.history.push(`/course-editor/${this.props.match.params.courseId}/module/${this.props.match.params.moduleId}/lesson/${this.props.match.params.lessonId}/topic/${this.props.topic._id}`)
+                      }}
+                      active={this.props.index === this.props.highlightTabIndex}>
+                    {this.props.topics[this.props.index].title}
                 <Icon icon={"edit"}
                       className={"mx-2"}
                       onClick={() => this.props.editTopicList(this.props.index, this.props.topic.title)}
@@ -55,10 +55,10 @@ class TopicPillsItem extends React.Component {
                               onClick={() => this.props.deleteTopic(this.props.topic._id)}/>
                         <Icon icon={"save"}
                               className={"mx-1"}
-                        onClick={()=>this.props.saveTopicList(
-                            this.props.topic._id,
-                            {title:this.props.editingInputCache}
-                        )}/>
+                              onClick={() => this.props.saveTopicList(
+                                  this.props.topic._id,
+                                  {title: this.props.editingInputCache}
+                              )}/>
                     </InputGroup>
 
                 </Row>

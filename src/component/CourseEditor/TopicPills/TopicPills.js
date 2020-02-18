@@ -23,11 +23,12 @@ class TopicPills extends React.Component {
     render() {
         return (
             <>
-                <Nav appearance="tabs" justified>
+                <Nav appearance="tabs" justified style={{"marginTop":20}}>
                     {this.props.topics && this.props.topics.map((topic, index) =>
                         <TopicPillsItem
                             topic={topic}
                             index={index}
+                            key={index}
                             match={this.props.match}
                             history={this.props.history}
                         />

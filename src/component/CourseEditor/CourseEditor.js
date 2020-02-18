@@ -9,11 +9,14 @@ import LessonTabs from "./LessonTabs/LessonTabs";
 import lessonReducer from "../../reducers/lessonReducer";
 import topicReducer from "../../reducers/topicReducer";
 import TopicPills from "./TopicPills/TopicPills";
+import widgetReducer from "../../reducers/widgetReducer";
+import WidgetListComponent from "./WidgetList/WidgetListComponent";
 
 const rootReducer = combineReducers({
     modules: moduleReducer,
     lessons: lessonReducer,
-    topics: topicReducer
+    topics: topicReducer,
+    widgets: widgetReducer
 });
 
 const store = createStore(rootReducer,
@@ -47,6 +50,10 @@ const CourseEditor = ({history, match}) =>
                             history={history}
                             className={"my-3"}/> :
                         <Placeholder.Paragraph rows={3} style={{marginTop: "15px"}}/>}
+                    {(match.params.topicId) && <WidgetListComponent
+                        match={match}
+                        history={history}/>
+                    }
 
                 </Col>
             </Row>

@@ -3,14 +3,12 @@ import NavBarContainer from "./NavBarContainer";
 import {deleteCourse, findAllCourses} from "../services/CourseService";
 import CourseTableComponent from "../component/CourseTableComponent";
 import CourseGridComponent from "../component/CourseGridComponent";
-import {Router, Route,Bro} from "react-router-dom";
+import {Router, Route} from "react-router-dom";
 import CourseEditor from "../component/CourseEditor/CourseEditor";
 import history from "../history";
 
 class CourseManagerContainer extends React.Component {
-    constructor() {
-        super();
-    }
+
     state = {
         editingCourse: false,
         courses: [],
@@ -114,6 +112,10 @@ class CourseManagerContainer extends React.Component {
                        render={(props) => <CourseEditor {...props}/>}
                 />
                 <Route path={"/course-editor/:courseId/module/:moduleId/lesson/:lessonId"}
+                       exact={true}
+                       render={(props) => <CourseEditor {...props}/>}
+                />
+                <Route path={"/course-editor/:courseId/module/:moduleId/lesson/:lessonId/topic/:topicId"}
                        exact={true}
                        render={(props) => <CourseEditor {...props}/>}
                 />
