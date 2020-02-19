@@ -35,16 +35,17 @@ class WidgetListComponent extends React.Component {
                         </Button>
                         <Button color={"green"}
                                 className={"mx-2"}
-                                onClick={() => this.props.createWidget(
-                                    this.props.match.params.topicId,
-                                    this.props.widgets.length)}>
+                                onClick={() =>
+                                    this.props.widgets.map(
+                                        widget => widgetService.updateWidget(widget.id, widget))
+                                }>
                             Save
                         </Button>
                         <Toggle className={"mx-2"}
                                 checkedChildren={"Preview"}
                                 unCheckedChildren={"Preview"}
                                 checked={this.state.isPreview}
-                                onChange={(checked)=>this.setState({
+                                onChange={(checked) => this.setState({
                                     isPreview: checked
                                 })}
                                 size={"lg"}/>
@@ -62,7 +63,9 @@ class WidgetListComponent extends React.Component {
                             key={index}
                             order={index}
                             isPreview={this.state.isPreview}
-                        />)}
+                            widgetListLength={this.props.widgets.length}
+                        />
+                    )}
                 </PanelGroup>
 
             </Grid>
