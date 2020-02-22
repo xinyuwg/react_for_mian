@@ -21,19 +21,19 @@ class WidgetComponent extends React.Component {
     headerPreview = (widget) => {
         switch (widget.size) {
             case "1":
-                return <h1>{widget.value}{widget.order}</h1>;
+                return <h1>{widget.value}</h1>;
             case "2":
-                return <h2>{widget.value}{widget.order}</h2>;
+                return <h2>{widget.value}}</h2>;
             case "3":
-                return <h3>{widget.value}{widget.order}</h3>;
+                return <h3>{widget.value}</h3>;
             case "4":
-                return <h4>{widget.value}{widget.order}</h4>;
+                return <h4>{widget.value}</h4>;
             case "5":
-                return <h5>{widget.value}{widget.order}</h5>;
+                return <h5>{widget.value}</h5>;
             case "6":
-                return <h6>{widget.value}{widget.order}</h6>;
+                return <h6>{widget.value}</h6>;
             default:
-                return <h1>{widget.value}{widget.order}</h1>
+                return <h1>{widget.value}</h1>
         }
     };
 
@@ -43,7 +43,7 @@ class WidgetComponent extends React.Component {
             <Grid fluid>
                 <Row className={"show-grid"}>
                     <Col md={10} mdHidden xsHidden smHidden>
-                        <h2>{widget.name} {widget.order}</h2>
+                        <h2>{widget.name}</h2>
                     </Col>
                     <Col>
                         <Button color={"yellow"}
