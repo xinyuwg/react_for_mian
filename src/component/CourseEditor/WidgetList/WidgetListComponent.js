@@ -3,7 +3,10 @@ import {connect} from "react-redux";
 import * as widgetService from "../../../services/WidgetService";
 import * as widgetAction from "../../../actions/widgetActions";
 import {Button, Col, Grid, PanelGroup, Row, Toggle} from "rsuite";
-import WidgetComponent from "./WidgetComponent";
+import HeadingWidget from "./Widgets/HeadingWidget";
+import ParagraphWidget from "./Widgets/ParagraphWidget";
+import ListWidget from "./Widgets/ListWidget";
+import ImageWidget from "./Widgets/ImageWidget";
 
 class WidgetListComponent extends React.Component {
 
@@ -52,22 +55,52 @@ class WidgetListComponent extends React.Component {
 
                     </Col>
                 </Row>
+
                 <PanelGroup
                     className={"my-4"}>
                     {this.props.widgets &&
                     this.props.widgets.sort(function (a, b) {
                         return a.order - b.order
                     }).map((widget, index) =>
-                        <WidgetComponent
-                            widget={widget}
-                            key={index}
-                            order={index}
-                            isPreview={this.state.isPreview}
-                            widgetListLength={this.props.widgets.length}
-                        />
+                        {
+                            switch (widget.type) {
+                                case "Heading":
+                                    return <HeadingWidget
+                                        widget={widget}
+                                        key={index}
+                                        order={index}
+                                        isPreview={this.state.isPreview}
+                                        widgetListLength={this.props.widgets.length}/>
+                                case "Paragraph":
+                                    return <ParagraphWidget
+                                        widget={widget}
+                                        key={index}
+                                        order={index}
+                                        isPreview={this.state.isPreview}
+                                        widgetListLength={this.props.widgets.length}
+                                    />;
+                                case "List":
+                                    return <ListWidget
+                                        widget={widget}
+                                        key={index}
+                                        order={index}
+                                        isPreview={this.state.isPreview}
+                                        widgetListLength={this.props.widgets.length}
+                                    />;
+                                case "Image":
+                                    return <ImageWidget
+                                        widget={widget}
+                                        key={index}
+                                        order={index}
+                                        isPreview={this.state.isPreview}
+                                        widgetListLength={this.props.widgets.length}
+                                    />;
+                                default:
+                                    return <></>
+                            }
+                        }
                     )}
                 </PanelGroup>
-
             </Grid>
         );
     }
@@ -89,7 +122,8 @@ const dispatchToPropertyMapper = (dispatch) => {
         createWidget: (topicId, order) => {
             return widgetService.createWidget(topicId, {
                 "name": "Widget",
-                "id": Date.now().toString(),
+                "type": "Heading",
+                "value": "New Widget",
                 "order": order
             })
                 .then(widget => dispatch(widgetAction.createWidget(topicId, widget)));

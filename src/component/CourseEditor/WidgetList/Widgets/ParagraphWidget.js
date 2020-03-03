@@ -1,49 +1,20 @@
-import React from "react";
-import {
-    Button,
-    Col,
-    ControlLabel,
-    Form,
-    FormControl,
-    FormGroup,
-    Grid,
-    Icon,
-    InputPicker,
-    Panel,
-    Row,
-} from "rsuite";
-import * as widgetAction from "../../../actions/widgetActions";
-import * as widgetService from "../../../services/WidgetService";
+import React from 'react';
+import {Button, Col, ControlLabel, Form, FormControl, FormGroup, Grid, Icon, InputPicker, Row} from "rsuite";
+import {INPUT_PICKER_VALUE} from "../../../../common/constants";
+import * as widgetAction from "../../../../actions/widgetActions";
+import * as widgetService from "../../../../services/WidgetService";
 import {connect} from "react-redux";
 
-class WidgetComponent extends React.Component {
+class ParagraphWidget extends React.Component {
 
-    headerPreview = (widget) => {
-        switch (widget.size) {
-            case "1":
-                return <h1>{widget.value}</h1>;
-            case "2":
-                return <h2>{widget.value}}</h2>;
-            case "3":
-                return <h3>{widget.value}</h3>;
-            case "4":
-                return <h4>{widget.value}</h4>;
-            case "5":
-                return <h5>{widget.value}</h5>;
-            case "6":
-                return <h6>{widget.value}</h6>;
-            default:
-                return <h1>{widget.value}</h1>
-        }
-    };
+    preview = () => this.props.widget.value;
 
-
-    editView = (widget) => {
+    editing = () => {
         return (
             <Grid fluid>
                 <Row className={"show-grid"}>
                     <Col md={10} mdHidden xsHidden smHidden>
-                        <h2>{widget.name}</h2>
+                        <h2>{this.props.widget.name}</h2>
                     </Col>
                     <Col>
                         <Button color={"yellow"}
@@ -65,10 +36,7 @@ class WidgetComponent extends React.Component {
                                 onClick={() => this.props.deleteWidget(this.props.widget.id)}>
                             Delete
                         </Button>
-                        <InputPicker data={[
-                            {"value": "Heading", "label": "Heading"},
-                            {"value": "Paragraph", "label": "Paragraph"}]
-                        }
+                        <InputPicker data={INPUT_PICKER_VALUE}
                                      value={this.props.widget.type}
                                      onChange={value => {
                                          this.props.updateWidgetLocally(this.props.widget.id,
@@ -101,7 +69,7 @@ class WidgetComponent extends React.Component {
                         <FormControl value={this.props.widget.value}
                                      placeholder={"Type Widget Content Here"}
                                      className={"my-2"}
-                                     componentClass={this.props.widget.type === "Paragraph" ? "textarea" : "input"}
+                                     componentClass={"textarea"}
                                      onChange={value => {
                                          this.props.updateWidgetLocally(this.props.widget.id,
                                              {
@@ -111,28 +79,7 @@ class WidgetComponent extends React.Component {
                                      }
                                      }/>
                     </FormGroup>
-                    {this.props.widget.type === "Heading" &&
-                    <FormGroup>
-                        <ControlLabel>Heading Size</ControlLabel>
-                        <InputPicker data={[
-                            {"value": "1", "label": "H1"},
-                            {"value": "2", "label": "H2"},
-                            {"value": "3", "label": "H3"},
-                            {"value": "4", "label": "H4"},
-                            {"value": "5", "label": "H5"},
-                            {"value": "6", "label": "H6"}]
-                        }
-                                     value={this.props.widget.size}
-                                     onChange={value => {
-                                         this.props.updateWidgetLocally(this.props.widget.id,
-                                             {
-                                                 ...this.props.widget,
-                                                 size: value
-                                             });
-                                     }
-                                     }/>
-                    </FormGroup>
-                    }
+
 
                 </Form>
 
@@ -141,27 +88,11 @@ class WidgetComponent extends React.Component {
         );
     };
 
-
-    preview = (widget) => {
-        switch (widget.type) {
-            case "Heading":
-                return (this.headerPreview(widget));
-            case "Paragraph":
-                return widget.value;
-            default:
-                return (this.headerPreview(widget));
-        }
-    };
-
     render() {
         return (
-            <Panel>
-                {this.props.isPreview ? this.preview(this.props.widget) : this.editView(this.props.widget)}
-            </Panel>
-        )
+            this.props.isPreview ? this.preview() : this.editing()
+        );
     }
-
-
 }
 
 
@@ -186,4 +117,4 @@ const dispatchToPropertyMapper = (dispatch) => {
 export default connect(
     null,
     dispatchToPropertyMapper
-)(WidgetComponent);
+)(ParagraphWidget);
