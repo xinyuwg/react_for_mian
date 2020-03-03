@@ -49,7 +49,7 @@ const topicReducer = (state = initialState, action) => {
         case DELETE_TOPIC:
             return {
                 ...state,
-                topics: state.topics.filter(topic => topic._id !== action.topicId)
+                topics: state.topics.filter(topic => topic.id !== action.topicId)
             };
         case SAVE_TOPIC_LIST:
             return {
@@ -60,7 +60,7 @@ const topicReducer = (state = initialState, action) => {
             return {
                 ...state,
                 topics: state.topics.map(topic => {
-                    if (topic._id === action.topicId) {
+                    if (topic.id === action.topicId) {
                         topic.title = action.newTopic.title;
                         return topic;
                     } else {

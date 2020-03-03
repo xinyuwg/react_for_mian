@@ -5,15 +5,7 @@ import {connect} from "react-redux";
 import {Alert, Icon, Input, InputGroup, Nav, Row} from "rsuite";
 
 class TopicPillsItem extends React.Component {
-    //
-    // componentDidMount() {
-    //     if (this.props.match.params.topicId) {
-    //         console.log(this.props.index);
-    //         if (this.props.match.params.topicId === this.props.topic._id) {
-    //             this.props.changeHighlightIndex(this.props.index)
-    //         }
-    //     }
-    // }
+
 
     plainText = () => {
         return (
@@ -22,10 +14,10 @@ class TopicPillsItem extends React.Component {
                 // eventKey={this.props.index}
                       onClick={() => {
                           this.props.changeHighlightIndex(this.props.index);
-                          this.props.history.push(`/course-editor/${this.props.match.params.courseId}/module/${this.props.match.params.moduleId}/lesson/${this.props.match.params.lessonId}/topic/${this.props.topic._id}`)
+                          this.props.history.push(`/course-editor/${this.props.match.params.courseId}/module/${this.props.match.params.moduleId}/lesson/${this.props.match.params.lessonId}/topic/${this.props.topic.id}`)
                       }}
                       active={this.props.index === this.props.highlightTabIndex}>
-                    {this.props.topics[this.props.index].title}
+                {this.props.topics[this.props.index].title}
                 <Icon icon={"edit"}
                       className={"mx-2"}
                       onClick={() => this.props.editTopicList(this.props.index, this.props.topic.title)}
@@ -52,12 +44,15 @@ class TopicPillsItem extends React.Component {
                                onChange={value => this.props.changeInputCache(value)}/>
                         <Icon icon={"trash-o"}
                               className={"mx-1"}
-                              onClick={() => this.props.deleteTopic(this.props.topic._id)}/>
+                              onClick={() => this.props.deleteTopic(this.props.topic.id)}/>
                         <Icon icon={"save"}
                               className={"mx-1"}
                               onClick={() => this.props.saveTopicList(
-                                  this.props.topic._id,
-                                  {title: this.props.editingInputCache}
+                                  this.props.topic.id,
+                                  {
+                                      ...this.props.topic,
+                                      title: this.props.editingInputCache
+                                  }
                               )}/>
                     </InputGroup>
 
